@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+
+    <div id="app">
+
+        <input type="text" v-model="nom">
+        <input type="text" v-model="prenom">
+        <div> Bonjour {{titreSelec}}  {{nom}} {{prenom}} </div>
+        <div>Votre choix est {{specSelec}} la matiere est {{ matSelec }}</div>
+        
+        <select v-model="titreSelec"> 
+            <option v-for="titre in titres"> {{titre.label}}  </option>
+        </select>
+        
+        <select v-model="specSelec">
+            <option v-for="specialité in specialités">{{specialité.label}} {{specialité.id}}</option>
+        </select>
+
+        
+        <div v-for="matiere in matieres" >
+            <input type="checkbox"> {{matiere.label}}
+        </div>
+
+    </div>
+
+
+    <script>
+        const { createApp , ref } = Vue;
+        createApp({
+            setup()
+            {
+                nom = ref("");
+                prenom = ref("");
+                titres = [{label: "Mr"} , {label: "M"} , {label:"Mme"}];
+                titreSelec = ref("");
+                specialités = [ {id:"005", label:"info" } , {id:"034", label:"math" }, {id:"089", label:"lettres" } ]
+                specSelec = ref("")
+                matieres = [{label: "Java"}, {label: "Javascript"}, {label: "C++"}]
+                matSelec = ref("")
+                return {nom,prenom,titres,titreSelec,specialités,specSelec,matieres};
+            }
+            
+         }).mount("#app")
+ 
+
+
+    </script>
+    
+</body>
+</html>
