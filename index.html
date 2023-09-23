@@ -15,7 +15,7 @@
         <input type="text" v-model="nom">
         <input type="text" v-model="prenom">
         <div> Bonjour {{titreSelec}}  {{nom}} {{prenom}} </div>
-        <div>Votre choix est {{specSelec}} la matiere est {{ matSelec }}</div>
+        <div>Votre choix est {{specSelec}}, les matieres sont {{ matSelec }}</div>
         
         <select v-model="titreSelec"> 
             <option v-for="titre in titres"> {{titre.label}}  </option>
@@ -26,8 +26,8 @@
         </select>
 
         
-        <div v-for="matiere in matieres" >
-            <input type="checkbox"> {{matiere.label}}
+        <div v-for="matiere in matieres">
+            <input type="checkbox" v-model="matSelec" :value="matiere.label">{{ matiere.label }}
         </div>
 
     </div>
@@ -45,8 +45,8 @@
                 specialités = [ {id:"005", label:"info" } , {id:"034", label:"math" }, {id:"089", label:"lettres" } ]
                 specSelec = ref("")
                 matieres = [{label: "Java"}, {label: "Javascript"}, {label: "C++"}]
-                matSelec = ref("")
-                return {nom,prenom,titres,titreSelec,specialités,specSelec,matieres};
+                matSelec = ref([]);
+                return { nom, prenom, titres, titreSelec, specialités, specSelec, matieres, matSelec };
             }
             
          }).mount("#app")
